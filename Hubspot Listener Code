@@ -1,0 +1,18 @@
+<script>
+window.addEventListener('message', function(event) {
+  
+  var hs_context = JSON.parse(event.data.data.submissionValues.hs_context);
+  if(event.data && event.data.eventName === 'onFormSubmitted') {
+    window.dataLayer.push({
+      event: 'hubspot_form_submit',
+      email: event.data.data.submissionValues.email,
+      first_name: event.data.data.submissionValues.firstname,
+      last_name: event.data.data.submissionValues.lastname,
+      embedAtTimestamp: hs_context.embedAtTimestamp,
+      language: hs_context.lang,
+      userAgent: hs_context.userAgent
+        
+    });
+  }
+});
+</script>
