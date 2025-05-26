@@ -1,18 +1,24 @@
 <script>
 window.addEventListener('message', function(event) {
-  
-  var hs_context = JSON.parse(event.data.data.submissionValues.hs_context);
-  if(event.data && event.data.eventName === 'onFormSubmitted') {
+  if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmitted') {
+    var hs_context = JSON.parse(event.data.data.submissionValues.hs_context);
+
+    window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-      event: 'hubspot_form_submit',
-      email: event.data.data.submissionValues.email,
-      first_name: event.data.data.submissionValues.firstname,
-      last_name: event.data.data.submissionValues.lastname,
-      embedAtTimestamp: hs_context.embedAtTimestamp,
-      language: hs_context.lang,
-      userAgent: hs_context.userAgent
-        
+      event: 'hs_form_submitted',
+      formId: event.data.id,
+      conversionId: event.data.data.conversionId,
+      formInputs: {
+        email: event.data.data.submissionValues.email,
+        first_name: event.data.data.submissionValues.firstname,
+        last_name: event.data.data.submissionValues.lastname,
+        company: event.data.data.submissionValues.company,
+        message: event.data.data.submissionValues.message,
+        embedAtTimestamp: hs_context.embedAtTimestamp,
+        language: hs_context.lang,
+        userAgent: hs_context.userAgent
+      }
     });
-  }
+  }
 });
 </script>
