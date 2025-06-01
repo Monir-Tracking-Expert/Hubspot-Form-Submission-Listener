@@ -1,5 +1,7 @@
 <script>
-window.addEventListener('message', function(event) {
+  // Demo site: https://www.launchonline.co.uk/contact/  
+(function(){
+  window.addEventListener('message', function(event) {
   if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmitted') {
     var hs_context = JSON.parse(event.data.data.submissionValues.hs_context);
 
@@ -21,4 +23,7 @@ window.addEventListener('message', function(event) {
     });
   }
 });
+
+})();
 </script>
+
