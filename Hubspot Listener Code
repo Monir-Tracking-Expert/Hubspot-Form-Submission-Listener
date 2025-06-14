@@ -1,5 +1,4 @@
 <script>
-  // Demo site: https://www.launchonline.co.uk/contact/  
 (function(){
   window.addEventListener('message', function(event) {
   if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmitted') {
